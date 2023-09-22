@@ -1,0 +1,43 @@
+.container-area{
+    background-color: white;
+    margin-top: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.button-area{
+    background-color: #218f8b;
+    color: white;
+    margin-left: 55px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.button-area:hover{
+    color: #218f8b;
+    border-color: #218f8b;
+    background-color: white;
+}
+
+.area-tab{
+    margin-top: 70px;
+}
+
+.button-opciones{
+    border-radius: 6px;
+    padding: 2px 8px;
+    border-color: #218f8b;
+}
+
+.color-icon{
+    color: #218f8b;
+}
+
+.opciones{
+    min-width: min-content;
+}
+
+.global-fluid-container{
+    padding: 0px;
+    padding-bottom: 20px;
+}

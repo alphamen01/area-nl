@@ -1,0 +1,54 @@
+<div class="container-fluid global-fluid-container">
+    <h3 class="fw-bold">Configuracion Area</h3>
+    <div class="container-fluid container-area">
+        <h5>Lista de Areas</h5>
+        <button type="button" class="btn button-area col-lg-3" data-bs-toggle="modal" data-bs-target="#addModal" >Agregar nuevo</button>
+        
+       
+        <div class="table-responsive">
+            <table class="table table-hover area-tab">                
+                <thead *ngIf="areas != null && areas.length > 0">
+                    <tr class="text-center">
+                        <th>Id Area</th>
+                        <th>Descripcion</th>
+                        <th>Cliente</th>       
+                        <th>Estado Registro</th>                       
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="areas != null && areas.length > 0">
+                    <tr *ngFor="let data of areas" class="text-center">
+                        <td>{{data.id_area}}</td>
+                        <td>{{data.descripcion}}</td>                        
+                        <td>{{data.clienteFK.nombre}}</td>
+                        <td *ngIf="data.enu_estado_registro === stringOne">Activo</td>
+                        <td *ngIf="data.enu_estado_registro === stringTwo">Inactivo</td>                        
+                        <td>
+                            <div class="btn-group dropup" role="group">
+                                <button type="button" class="btn-light button-opciones" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots-vertical color-icon"></i>
+                                </button>
+                                <ul class="dropdown-menu opciones" >
+                                    <li><a class="dropdown-item" routerLink="/FirmaEdit/1"><i class="bi bi-pencil-square color-icon"></i></a></li>
+                                    <li><a class="dropdown-item" (click)="obtenerArea(data.id_area!)" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-eye-fill color-icon"></i></a></li>
+                                    <li><a class="dropdown-item" (click)="obtenerArea(data.id_area!)" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash-fill color-icon"></i></a></li>
+                                </ul>
+                            </div> 
+                        </td>
+                    </tr>            
+                </tbody>
+    
+                <thead >
+                    <tr *ngIf="areas == null || areas.length == 0">
+                        <th>No hay registros de Areas.</th>              
+                    </tr>
+                </thead>
+    
+            </table>
+        </div>
+
+    </div>  
+</div>
+
+<app-detalle-area [areadata]="areadata"></app-detalle-area>
+<app-eliminar-area [areadata]="areadata"></app-eliminar-area>
