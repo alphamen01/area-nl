@@ -9,5 +9,5 @@ export interface Area {
     fecha_creacion?: Date,
     usuario_modificacion?: string,
     fecha_modificacion?: Date
-    clienteFK: Cliente
+    clienteFK?: Cliente
 }

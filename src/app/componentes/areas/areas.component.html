@@ -20,7 +20,7 @@
                     <tr *ngFor="let data of areas" class="text-center">
                         <td>{{data.id_area}}</td>
                         <td>{{data.descripcion}}</td>                        
-                        <td>{{data.clienteFK.nombre}}</td>
+                        <td>{{data.clienteFK!.nombre}}</td>
                         <td *ngIf="data.enu_estado_registro === stringOne">Activo</td>
                         <td *ngIf="data.enu_estado_registro === stringTwo">Inactivo</td>                        
                         <td>
@@ -52,3 +52,57 @@
 
 <app-detalle-area [areadata]="areadata"></app-detalle-area>
 <app-eliminar-area [areadata]="areadata"></app-eliminar-area>
+
+<!-- Modal Agregar -->
+<div class="modal fade" tabindex="-1" id="addModal" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-sm-down modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title mx-auto">Agregar Area</h5>
+        </div>
+        <div class="modal-body">
+            
+             <form [formGroup]="agregarArea" (ngSubmit)="agregar()">
+                <div class="row g-2">
+                    <div class="mb-3 col-md">
+                        <label for="descripcion" class="form-label">Descripcion</label>
+                        <input type="text" class="form-control" id="descripcion" name="descripcion" autocomplete="off" formControlName="descripcion">
+                        <span *ngIf="agregarArea.get('descripcion')?.invalid && agregarArea.get('descripcion')?.touched" class="text-danger">
+                            La <strong>descripcion </strong>es requerido.
+                        </span> 
+                    </div> 
+                    <div class="mb-3 col-md" >
+                        <label for="cliente" class="form-label">Cliente</label>
+                        <select class="form-select" id="cliente" name="cliente" formControlName="id_cliente" >
+                            <option></option>
+                            <option *ngFor="let data of clientes" value={{data.id_cliente}}>{{data.nombre}}</option>                            
+                        </select>
+                        <span *ngIf="agregarArea.get('id_cliente')?.invalid && agregarArea.get('id_cliente')?.touched" class="text-danger">
+                            El <strong>cliente </strong>es requerido.
+                        </span> 
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="mb-3 col-md text-center">
+                        <div>
+                            <label class="form-label">Estado Registro</label>
+                        </div>                        
+                        <div class="form-check form-check-inline col-md-4" *ngFor="let sta of estados">
+                            <input type="radio" class="form-check-input" name="enu_estado_registro"  value={{sta.abrv}}  formControlName ="enu_estado_registro"> {{sta.nombre}}                            
+                        </div>                        
+                    </div>
+                    <div class="mb-3 col-md">
+                    </div>
+                </div>                                           
+                
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" [disabled]="agregarArea.invalid" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                </div>
+                
+            </form>        
+        </div>
+       
+      </div>
+    </div>
+</div>

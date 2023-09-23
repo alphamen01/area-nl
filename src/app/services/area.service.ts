@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Area } from '../models/area.model';
+import { Cliente } from '../models/cliente.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,16 @@ private baseApiURL: string = "https://localhost:5001/api/"
 
   deleteArea(id:number): Observable<void>{
     return this.http.delete<void>(`${this.baseApiURL}area/${id}`);
+  }
+
+  addCurso(area: Area): Observable<Area>{
+    return this.http.post<Area>(`${this.baseApiURL}area`, area);
+  }
+
+
+
+  //CLIENTES
+  getAllClientes(): Observable<Cliente[]>{
+    return this.http.get<Cliente[]>(`${this.baseApiURL}clientes`)
   }
 }
