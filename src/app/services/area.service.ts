@@ -25,10 +25,13 @@ private baseApiURL: string = "https://localhost:5001/api/"
     return this.http.delete<void>(`${this.baseApiURL}area/${id}`);
   }
 
-  addCurso(area: Area): Observable<Area>{
+  addArea(area: Area): Observable<Area>{
     return this.http.post<Area>(`${this.baseApiURL}area`, area);
   }
 
+  updateArea(id:number, area:Area): Observable<void>{
+    return this.http.put<void>(`${this.baseApiURL}area/${id}`, area); 
+  }
 
 
   //CLIENTES

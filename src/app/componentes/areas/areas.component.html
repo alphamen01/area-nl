@@ -2,7 +2,7 @@
     <h3 class="fw-bold">Configuracion Area</h3>
     <div class="container-fluid container-area">
         <h5>Lista de Areas</h5>
-        <button type="button" class="btn button-area col-lg-3" data-bs-toggle="modal" data-bs-target="#addModal" >Agregar nuevo</button>
+        <button type="button" class="btn button-area col-lg-3" data-bs-toggle="modal" data-bs-target="#addModal" (click)="openModal()">Agregar nuevo</button>
         
        
         <div class="table-responsive">
@@ -29,7 +29,7 @@
                                 <i class="bi bi-three-dots-vertical color-icon"></i>
                                 </button>
                                 <ul class="dropdown-menu opciones" >
-                                    <li><a class="dropdown-item" routerLink="/FirmaEdit/1"><i class="bi bi-pencil-square color-icon"></i></a></li>
+                                    <li><a class="dropdown-item" (click)="openModal(data.id_area!)" data-bs-toggle="modal" data-bs-target="#addModal"><i class="bi bi-pencil-square color-icon"></i></a></li>
                                     <li><a class="dropdown-item" (click)="obtenerArea(data.id_area!)" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-eye-fill color-icon"></i></a></li>
                                     <li><a class="dropdown-item" (click)="obtenerArea(data.id_area!)" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash-fill color-icon"></i></a></li>
                                 </ul>
@@ -58,11 +58,11 @@
     <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-sm-down modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title mx-auto">Agregar Area</h5>
+          <h5 class="modal-title mx-auto">{{modalTitle}} Area</h5>
         </div>
         <div class="modal-body">
             
-             <form [formGroup]="agregarArea" (ngSubmit)="agregar()">
+             <form [formGroup]="agregarArea" (ngSubmit)="agregar(adddata?.id_area)">
                 <div class="row g-2">
                     <div class="mb-3 col-md">
                         <label for="descripcion" class="form-label">Descripcion</label>
