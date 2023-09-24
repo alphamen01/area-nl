@@ -39,12 +39,12 @@ constructor(private areaService: AreaService, private fb: FormBuilder){
 openModal(id?:number): void {
   
   this.modalTitle = id ? 'Editar' : 'Agregar';
-  console.log(id);
+  //console.log(id);
     if(id !== undefined){
     this.areaService.getArea(id!).subscribe({
       next:(dataarea) =>{
         this.adddata = dataarea
-        console.log(this.adddata);
+        //console.log(this.adddata);
         this.agregarArea.patchValue({
           descripcion: dataarea.descripcion,
           id_cliente: dataarea.id_cliente,
@@ -79,7 +79,7 @@ obtenerAreas(){
   this.areaService.getAllAreas().subscribe({
     next:(data) =>{
       this.areas = data;
-       console.log(data);
+       //console.log(data);
     },error:(e)=>{}
   })
 }
@@ -116,7 +116,7 @@ obtenerArea(id:number){
 // }
 
 agregar(id?: number | null){
-  console.log(id);
+  //console.log(id);
   if (id == undefined || id === 0) {
         //AGREGAR
     const area : Area={
@@ -126,9 +126,9 @@ agregar(id?: number | null){
       usuario_creacion: 'Luis',
       fecha_creacion: new Date    
     }
-    console.log(area);
+    //console.log(area);
       this.areaService.addArea(area).subscribe(data =>{
-      console.log(data);
+      //console.log(data);
       this.obtenerAreas();
     },
       error => {
@@ -152,9 +152,9 @@ agregar(id?: number | null){
       fecha_modificacion: new Date 
      }
 
-     console.log(area);
+     //console.log(area);
      this.areaService.updateArea(id,area).subscribe(data =>{
-      console.log(data);
+      //console.log(data);
       this.obtenerAreas();
     },
       error => {
