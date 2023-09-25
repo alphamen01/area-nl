@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Area } from 'src/app/models/area.model';
 import { Cliente } from 'src/app/models/cliente.model';
 import { AreaService } from 'src/app/services/area.service';
@@ -27,7 +28,7 @@ agregarArea: FormGroup;
 modalTitle: string = 'Agregar';
 adddata?:Area;
 
-constructor(private areaService: AreaService, private fb: FormBuilder){
+constructor(private areaService: AreaService, private fb: FormBuilder, private toastr: ToastrService){
 
   this.agregarArea = this.fb.group({
     descripcion:['', Validators.required],
@@ -129,6 +130,7 @@ agregar(id?: number | null){
     //console.log(area);
       this.areaService.addArea(area).subscribe(data =>{
       //console.log(data);
+      this.toastr.success('El area fue creado con exito!', 'Registro creado');
       this.obtenerAreas();
     },
       error => {
@@ -155,6 +157,7 @@ agregar(id?: number | null){
      //console.log(area);
      this.areaService.updateArea(id,area).subscribe(data =>{
       //console.log(data);
+      this.toastr.info('El area fue actualizado con exito!', 'Registro actualizado');
       this.obtenerAreas();
     },
       error => {

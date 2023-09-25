@@ -9,7 +9,8 @@ import { Cliente } from '../models/cliente.model';
 })
 export class AreaService {
 
-private baseApiURL: string = "https://localhost:5001/api/"
+//private baseApiURL: string = "https://localhost:5001/api/"
+private baseApiURL: string = "https://webapiarea.azurewebsites.net/api/"
 
   constructor(private http: HttpClient) { }
 
